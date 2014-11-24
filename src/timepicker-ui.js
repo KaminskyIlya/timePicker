@@ -465,9 +465,15 @@
             //
             if ( opt.touchscreen )
             {
-                var p = {
-                    x: e.originalEvent.touches ? e.originalEvent.touches[0].pageX : e.pageX - shift_pos.x,
-                    y: e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY - shift_pos.y
+                var p = (e.type == 'touchstart' && e.originalEvent.touches) ?
+                {
+                    x: e.originalEvent.touches[0].pageX - shift_pos.x,
+                    y: e.originalEvent.touches[0].pageY - shift_pos.y
+                }
+                    :
+                {
+                    x: e.pageX - shift_pos.x,
+                    y: e.pageY - shift_pos.y
                 };
 
                 // на какую цифру указал пользователь?
